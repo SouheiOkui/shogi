@@ -216,9 +216,11 @@ class Chose2ViewController: UIViewController {
             for x in 1...7{
                 if (x-1) % 3 == 0 {boardMatrix [7 - ((x-1) / 3)][(x-1) % 3] = boardMatrix2[(x-1) / 3][2] * -1}
                 if (x-1) % 3 == 2 {boardMatrix [7 - ((x-1) / 3)][(x-1) % 3] = boardMatrix2[(x-1) / 3][0] * -1}
-                else if (x-1) % 3 == 2 {boardMatrix [7 - ((x-1) / 3)][(x-1) % 3] = boardMatrix2[(x-1) / 3][(x-1) % 3] * -1}
+                if (x-1) % 3 == 1 {boardMatrix [7 - ((x-1) / 3)][(x-1) % 3] = boardMatrix2[(x-1) / 3][(x-1) % 3] * -1}
             }
-            
+            print(boardMatrix2)
+            print(boardMatrix)
+
             let buttleViewController = segue.destination as! ButtleViewController
             buttleViewController.boardMatrix = boardMatrix
         }

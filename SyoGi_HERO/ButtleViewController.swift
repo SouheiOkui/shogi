@@ -21,7 +21,7 @@ class ButtleViewController: UIViewController {
     var putNumber : [Int] = [0,0]
     
     var komaImageIndex:[String] = ["hu.png","king.png","gold.png","silva.png","hose.png","kyo.png","to.png","tama.png"]
-    var r_komaImageIndex:[String] = ["r_hu.png","r_king.png","r_gold.png","r_silva.png","r_hose.png","kyo.png","to.png","r_tama.png"]
+    var r_komaImageIndex:[String] = ["r_hu.png","r_king.png","r_gold.png","r_silva.png","r_hose.png","r_kyo.png","r_to.png","r_tama.png"]
     
     @IBOutlet var buttns1 : UIButton!
     @IBOutlet var buttns2 : UIButton!
@@ -119,6 +119,7 @@ class ButtleViewController: UIViewController {
         print("koma : "+String(koma_No))
         
         print(possibleMatrix)
+        print(possibleP2Matrix)
         print((cell_No-1) / 3)
         print((cell_No-1) % 3)
         print()
@@ -171,6 +172,11 @@ class ButtleViewController: UIViewController {
             print("キングだよ")
             callKing(cell_No:cell_No)
             plotPossible()
+        }
+        if koma_No == -2 || koma_No == -8{
+            print("敵のキングだよ")
+            callKingR(cell_No:cell_No)
+            plotPossible2()
         }
         if koma_No == 3 || koma_No == 7{
             print("金だよ")
@@ -304,6 +310,92 @@ class ButtleViewController: UIViewController {
             if  boardMatrix[6][1] <= 0 { possibleMatrix [6][1] = 1}
             if  boardMatrix[6][2] <= 0 { possibleMatrix [6][2] = 1}
             if  boardMatrix[7][1] <= 0 { possibleMatrix [7][1] = 1}
+            lastCallX = ((cell_No-1) / 3)
+            lastCallY = (cell_No-1) % 3
+        }
+        
+    }
+    func callKingR(cell_No : Int){
+        if  4 < cell_No && cell_No < 22 && cell_No % 3 == 2 {
+            print("中央")
+            if  boardMatrix[(cell_No-3)/3][0] <= 0 {possibleP2Matrix [(cell_No-3)/3][0] = 1}
+            if  boardMatrix[(cell_No-3)/3][1] <= 0 {possibleP2Matrix [(cell_No-3)/3][1] = 1}
+            if  boardMatrix[(cell_No-3)/3][2] <= 0 {possibleP2Matrix [(cell_No-3)/3][2] = 1}
+            if  boardMatrix[(cell_No)/3][0] <= 0 {possibleP2Matrix [(cell_No)/3][0] = 1}
+            if  boardMatrix[(cell_No)/3][2] <= 0 {possibleP2Matrix [(cell_No)/3][2] = 1}
+            if  boardMatrix[(cell_No+3)/3][0] <= 0 {possibleP2Matrix [(cell_No+3)/3][0] = 1}
+            if  boardMatrix[(cell_No+3)/3][1] <= 0 {possibleP2Matrix [(cell_No+3)/3][1] = 1}
+            if  boardMatrix[(cell_No+3)/3][2] <= 0 {possibleP2Matrix [(cell_No+3)/3][2] = 1}
+            lastCallX = ((cell_No-1) / 3)
+            lastCallY = (cell_No-1) % 3
+            
+        }
+        else if  4 < cell_No && cell_No < 22 && cell_No % 3 == 0 {
+            print("右サイド")
+            if  boardMatrix[(cell_No-4)/3][1] <= 0 {possibleP2Matrix [(cell_No-4)/3][1] = 1}
+            if  boardMatrix[(cell_No-4)/3][2] <= 0 {possibleP2Matrix [(cell_No-4)/3][2] = 1}
+            if  boardMatrix[(cell_No-1)/3][1] <= 0 {possibleP2Matrix [(cell_No-1)/3][1] = 1}
+            if  boardMatrix[(cell_No+2)/3][1] <= 0 {possibleP2Matrix [(cell_No+2)/3][1] = 1}
+            if  boardMatrix[(cell_No+2)/3][2] <= 0 {possibleP2Matrix [(cell_No+2)/3][2] = 1}
+            lastCallX = ((cell_No-1) / 3)
+            lastCallY = (cell_No-1) % 3
+            
+        }
+        else if  3 < cell_No && cell_No < 22 && cell_No % 3 == 1 {
+            print("左サイド")
+            if  boardMatrix[(cell_No-2)/3][0] <= 0 {possibleP2Matrix [(cell_No-2)/3][0] = 1}
+            if  boardMatrix[(cell_No-2)/3][1] <= 0 {possibleP2Matrix [(cell_No-2)/3][1] = 1}
+            if  boardMatrix[(cell_No)/3][1] <= 0 {possibleP2Matrix [(cell_No)/3][1] = 1}
+            if  boardMatrix[(cell_No+2)/3][0] <= 0 {possibleP2Matrix [(cell_No+2)/3][0] = 1}
+            if  boardMatrix[(cell_No+2)/3][1] <= 0 {possibleP2Matrix [(cell_No+2)/3][1] = 1}
+            lastCallX = ((cell_No-1) / 3)
+            lastCallY = (cell_No-1) % 3
+            
+        }
+        else if cell_No == 2 {
+            print("初期値")
+            if  boardMatrix[0][0] <= 0 { possibleP2Matrix [0][0] = 1}
+            if  boardMatrix[0][2] <= 0 { possibleP2Matrix [0][2] = 1}
+            if  boardMatrix[1][0] <= 0 { possibleP2Matrix [1][0] = 1}
+            if  boardMatrix[1][1] <= 0 { possibleP2Matrix [1][1] = 1}
+            if  boardMatrix[1][2] <= 0 { possibleP2Matrix [1][2] = 1}
+            lastCallX = ((cell_No-1) / 3)
+            lastCallY = (cell_No-1) % 3
+        }
+        else if cell_No == 23 {
+            if  boardMatrix[7][0] <= 0 { possibleP2Matrix [7][0] = 1}
+            if  boardMatrix[7][2] <= 0 { possibleP2Matrix [7][2] = 1}
+            if  boardMatrix[6][0] <= 0 { possibleP2Matrix [6][0] = 1}
+            if  boardMatrix[6][1] <= 0 { possibleP2Matrix [6][1] = 1}
+            if  boardMatrix[6][2] <= 0 { possibleP2Matrix [6][2] = 1}
+            lastCallX = ((cell_No-1) / 3)
+            lastCallY = (cell_No-1) % 3
+        }
+        else if cell_No == 1 {//王のかど
+            if  boardMatrix[0][1] <= 0 { possibleP2Matrix [0][1] = 1}
+            if  boardMatrix[1][0] <= 0 { possibleP2Matrix [1][0] = 1}
+            if  boardMatrix[1][1] <= 0 { possibleP2Matrix [1][1] = 1}
+            lastCallX = ((cell_No-1) / 3)
+            lastCallY = (cell_No-1) % 3
+        }
+        else if cell_No == 3 {//王のかど
+            if  boardMatrix[0][1] <= 0 { possibleP2Matrix [0][1] = 1}
+            if  boardMatrix[1][2] <= 0 { possibleP2Matrix [1][2] = 1}
+            if  boardMatrix[1][1] <= 0 { possibleP2Matrix [1][1] = 1}
+            lastCallX = ((cell_No-1) / 3)
+            lastCallY = (cell_No-1) % 3
+        }
+        else if cell_No == 22 {//王のかど
+            if  boardMatrix[6][1] <= 0 { possibleP2Matrix [6][1] = 1}
+            if  boardMatrix[6][0] <= 0 { possibleP2Matrix [6][0] = 1}
+            if  boardMatrix[7][1] <= 0 { possibleP2Matrix [7][1] = 1}
+            lastCallX = ((cell_No-1) / 3)
+            lastCallY = (cell_No-1) % 3
+        }
+        else if cell_No == 24 {//王のかど
+            if  boardMatrix[6][1] <= 0 { possibleP2Matrix [6][1] = 1}
+            if  boardMatrix[6][2] <= 0 { possibleP2Matrix [6][2] = 1}
+            if  boardMatrix[7][1] <= 0 { possibleP2Matrix [7][1] = 1}
             lastCallX = ((cell_No-1) / 3)
             lastCallY = (cell_No-1) % 3
         }

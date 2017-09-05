@@ -202,6 +202,7 @@ class HeroChose2ViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "secondchose" {
+            print(boardMatrix2)
             let chose2ViewController = segue.destination as! Chose2ViewController
             chose2ViewController.boardMatrix = boardMatrix
             chose2ViewController.boardMatrix2 = boardMatrix2
