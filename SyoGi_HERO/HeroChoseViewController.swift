@@ -48,7 +48,7 @@ class HeroChoseViewController: UIViewController {
        
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        protAlpha()
         // Do any additional setup after loading the view.
     }
     
@@ -110,9 +110,21 @@ class HeroChoseViewController: UIViewController {
         protUpClear()
         chousingKoma = 0
     }
-    
+    func protAlpha(){
+        buttns1.alpha = 0.5
+        buttns2.alpha = 0.5
+        buttns3.alpha = 0.5
+        buttns4.alpha = 0.5
+        buttns5.alpha = 0.5
+        buttns6.alpha = 0.5
+        komaButtns1.alpha = 0.5
+        komaButtns2.alpha = 0.5
+        komaButtns3.alpha = 0.5
+        komaButtns4.alpha = 0.5
+        komaButtns5.alpha = 0.5
+        komaButtns6.alpha = 0.5
+    }
     func protRed(){
-        
         if boardMatrix[0][0] == 0 {buttns1.backgroundColor = UIColor.red}else{buttns1.backgroundColor = UIColor.brown}
         if boardMatrix[0][1] == 0 {buttns2.backgroundColor = UIColor.red}else{buttns2.backgroundColor = UIColor.brown}
         if boardMatrix[0][2] == 0 {buttns3.backgroundColor = UIColor.red}else{buttns3.backgroundColor = UIColor.brown}

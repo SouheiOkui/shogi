@@ -49,8 +49,8 @@ class HeroChose2ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Do any additional setup after loading the view.
+        protAlpha()
     }
     
     override func didReceiveMemoryWarning() {
@@ -111,15 +111,28 @@ class HeroChose2ViewController: UIViewController {
         protUpClear()
         chousingKoma = 0
     }
-    
+    func protAlpha(){
+        buttns1.alpha = 0.5
+        buttns2.alpha = 0.5
+        buttns3.alpha = 0.5
+        buttns4.alpha = 0.5
+        buttns5.alpha = 0.5
+        buttns6.alpha = 0.5
+        komaButtns1.alpha = 0.5
+        komaButtns2.alpha = 0.5
+        komaButtns3.alpha = 0.5
+        komaButtns4.alpha = 0.5
+        komaButtns5.alpha = 0.5
+        komaButtns6.alpha = 0.5
+    }
     func protRed(){
         
-        if boardMatrix2[0][0] == 0 {buttns1.backgroundColor = UIColor.red}else{buttns1.backgroundColor = UIColor.brown}
-        if boardMatrix2[0][1] == 0 {buttns2.backgroundColor = UIColor.red}else{buttns2.backgroundColor = UIColor.brown}
-        if boardMatrix2[0][2] == 0 {buttns3.backgroundColor = UIColor.red}else{buttns3.backgroundColor = UIColor.brown}
-        if boardMatrix2[1][0] == 0 {buttns4.backgroundColor = UIColor.red}else{buttns4.backgroundColor = UIColor.brown}
-        if boardMatrix2[1][1] == 0 {buttns5.backgroundColor = UIColor.red}else{buttns5.backgroundColor = UIColor.brown}
-        if boardMatrix2[1][2] == 0 {buttns6.backgroundColor = UIColor.red}else{buttns6.backgroundColor = UIColor.brown}
+        if boardMatrix2[0][0] == 0 {buttns1.backgroundColor = UIColor.blue}else{buttns1.backgroundColor = UIColor.brown}
+        if boardMatrix2[0][1] == 0 {buttns2.backgroundColor = UIColor.blue}else{buttns2.backgroundColor = UIColor.brown}
+        if boardMatrix2[0][2] == 0 {buttns3.backgroundColor = UIColor.blue}else{buttns3.backgroundColor = UIColor.brown}
+        if boardMatrix2[1][0] == 0 {buttns4.backgroundColor = UIColor.blue}else{buttns4.backgroundColor = UIColor.brown}
+        if boardMatrix2[1][1] == 0 {buttns5.backgroundColor = UIColor.blue}else{buttns5.backgroundColor = UIColor.brown}
+        if boardMatrix2[1][2] == 0 {buttns6.backgroundColor = UIColor.blue}else{buttns6.backgroundColor = UIColor.brown}
     }
     func protClear(){
         buttns1.backgroundColor = UIColor.brown
@@ -189,22 +202,22 @@ class HeroChose2ViewController: UIViewController {
     
     @IBAction func chose1(){
         protUpClear()
-        komaButtns1.backgroundColor = UIColor.red
+        komaButtns1.backgroundColor = UIColor.blue
         chouse(komaNo: 2)
     }
     @IBAction func chose2(){
         protUpClear()
-        komaButtns2.backgroundColor = UIColor.red
+        komaButtns2.backgroundColor = UIColor.blue
         chouse(komaNo: 8)
     }
     @IBAction func chose3(){
         protUpClear()
-        komaButtns3.backgroundColor = UIColor.red
+        komaButtns3.backgroundColor = UIColor.blue
         chouse(komaNo: 4)
     }
     @IBAction func chose4(){
         protUpClear()
-        komaButtns4.backgroundColor = UIColor.red
+        komaButtns4.backgroundColor = UIColor.blue
         chouse(komaNo: 5)
     }
     

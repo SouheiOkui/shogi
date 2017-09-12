@@ -103,7 +103,7 @@ class ButtleViewController: UIViewController {
         
         plot(boardMatrix: boardMatrix)
         plotKoma()
-        
+        protAlpha()
         // Do any additional setup after loading the view.
     }
 
@@ -1493,8 +1493,39 @@ class ButtleViewController: UIViewController {
         buttns24.backgroundColor = UIColor.brown
         
     }
-
-
-    
+    func protAlpha(){
+        buttns1.alpha = 0.7
+        buttns2.alpha = 0.7
+        buttns3.alpha = 0.7
+        buttns4.alpha = 0.7
+        buttns5.alpha = 0.7
+        buttns6.alpha = 0.7
+        buttns7.alpha = 0.7
+        buttns8.alpha = 0.7
+        buttns9.alpha = 0.7
+        buttns10.alpha = 0.7
+        buttns11.alpha = 0.7
+        buttns12.alpha = 0.7
+        buttns13.alpha = 0.7
+        buttns14.alpha = 0.7
+        buttns15.alpha = 0.7
+        buttns16.alpha = 0.7
+        buttns17.alpha = 0.7
+        buttns18.alpha = 0.7
+        buttns19.alpha = 0.7
+        buttns20.alpha = 0.7
+        buttns21.alpha = 0.7
+        buttns22.alpha = 0.7
+        buttns23.alpha = 0.7
+        buttns24.alpha = 0.7
+        handButtns1.alpha = 0.7
+        handButtns2.alpha = 0.7
+        handButtns3.alpha = 0.7
+        handButtns4.alpha = 0.7
+        handButtns5.alpha = 0.7
+        handButtns6.alpha = 0.7
+        handButtns7.alpha = 0.7
+        handButtns8.alpha = 0.7
+    }
     
 }

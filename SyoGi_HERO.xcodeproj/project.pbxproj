@@ -19,6 +19,9 @@
 		969D5A3C1F5EEA5400A46B08 /* tama.png in Resources */ = {isa = PBXBuildFile; fileRef = 969D5A3B1F5EEA5400A46B08 /* tama.png */; };
 		969D5A3E1F5EECA000A46B08 /* r_tama.png in Resources */ = {isa = PBXBuildFile; fileRef = 969D5A3D1F5EECA000A46B08 /* r_tama.png */; };
 		969D5A401F5EF03200A46B08 /* r_silva.png in Resources */ = {isa = PBXBuildFile; fileRef = 969D5A3F1F5EF03200A46B08 /* r_silva.png */; };
+		969D5A4F1F682B2C00A46B08 /* backBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = 969D5A4D1F682B2C00A46B08 /* backBlue.png */; };
+		969D5A501F682B2C00A46B08 /* backRed.png in Resources */ = {isa = PBXBuildFile; fileRef = 969D5A4E1F682B2C00A46B08 /* backRed.png */; };
+		969D5A541F683A4000A46B08 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 969D5A531F683A4000A46B08 /* back.png */; };
 		AB1D52EE1F41782500DF248D /* mokume.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB1D52ED1F41782500DF248D /* mokume.jpg */; };
 		AB1D52F01F417B2200DF248D /* ButtleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1D52EF1F417B2200DF248D /* ButtleViewController.swift */; };
 		AB1D52F41F44066600DF248D /* koma.png in Resources */ = {isa = PBXBuildFile; fileRef = AB1D52F31F44066600DF248D /* koma.png */; };
@@ -53,6 +56,9 @@
 		969D5A3B1F5EEA5400A46B08 /* tama.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tama.png; sourceTree = "<group>"; };
 		969D5A3D1F5EECA000A46B08 /* r_tama.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = r_tama.png; sourceTree = "<group>"; };
 		969D5A3F1F5EF03200A46B08 /* r_silva.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = r_silva.png; sourceTree = "<group>"; };
+		969D5A4D1F682B2C00A46B08 /* backBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backBlue.png; sourceTree = "<group>"; };
+		969D5A4E1F682B2C00A46B08 /* backRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backRed.png; sourceTree = "<group>"; };
+		969D5A531F683A4000A46B08 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		AB1D52ED1F41782500DF248D /* mokume.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mokume.jpg; sourceTree = "<group>"; };
 		AB1D52EF1F417B2200DF248D /* ButtleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtleViewController.swift; sourceTree = "<group>"; };
 		AB1D52F31F44066600DF248D /* koma.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = koma.png; sourceTree = "<group>"; };
@@ -139,8 +145,11 @@
 				969D5A3D1F5EECA000A46B08 /* r_tama.png */,
 				969D5A351F5EE8D100A46B08 /* r_king.png */,
 				969D5A3F1F5EF03200A46B08 /* r_silva.png */,
+				969D5A531F683A4000A46B08 /* back.png */,
 				969D5A391F5EEA0300A46B08 /* r_hose.png */,
 				969D5A311F5EE86200A46B08 /* r_kyo.png */,
+				969D5A4D1F682B2C00A46B08 /* backBlue.png */,
+				969D5A4E1F682B2C00A46B08 /* backRed.png */,
 				969D5A331F5EE87300A46B08 /* r_to.png */,
 				AB1D53051F4551A300DF248D /* kyo.png */,
 				AB1D53031F45518B00DF248D /* to.png */,
@@ -209,11 +218,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				969D5A4F1F682B2C00A46B08 /* backBlue.png in Resources */,
 				969D5A3A1F5EEA0300A46B08 /* r_hose.png in Resources */,
 				AB1D53041F45518B00DF248D /* to.png in Resources */,
 				969D5A321F5EE86200A46B08 /* r_kyo.png in Resources */,
 				AB1D532C1F5FAD9200DF248D /* r_gold.png in Resources */,
 				AB2CFECA1F31BC5A00960165 /* LaunchScreen.storyboard in Resources */,
+				969D5A541F683A4000A46B08 /* back.png in Resources */,
 				AB2CFED71F31C1AD00960165 /* cell.png in Resources */,
 				969D5A401F5EF03200A46B08 /* r_silva.png in Resources */,
 				AB1D53021F454DF300DF248D /* hose.png in Resources */,
@@ -230,6 +241,7 @@
 				AB1D52F61F4409E100DF248D /* koma 2.png in Resources */,
 				969D5A341F5EE87300A46B08 /* r_to.png in Resources */,
 				969D5A3C1F5EEA5400A46B08 /* tama.png in Resources */,
+				969D5A501F682B2C00A46B08 /* backRed.png in Resources */,
 				969D5A381F5EE8E200A46B08 /* r_hu.png in Resources */,
 				969D5A3E1F5EECA000A46B08 /* r_tama.png in Resources */,
 			);
