@@ -37,6 +37,10 @@
 		AB1D532C1F5FAD9200DF248D /* r_gold.png in Resources */ = {isa = PBXBuildFile; fileRef = AB1D532B1F5FAD9200DF248D /* r_gold.png */; };
 		AB1D532E1F68E9BC00DF248D /* wing.png in Resources */ = {isa = PBXBuildFile; fileRef = AB1D532D1F68E9BC00DF248D /* wing.png */; };
 		AB1D53301F68EA2B00DF248D /* r_wing.png in Resources */ = {isa = PBXBuildFile; fileRef = AB1D532F1F68EA2B00DF248D /* r_wing.png */; };
+		AB1D53321F6A6D8500DF248D /* r_dolagoKing.png in Resources */ = {isa = PBXBuildFile; fileRef = AB1D53311F6A6D8500DF248D /* r_dolagoKing.png */; };
+		AB1D53341F6A79A200DF248D /* dolagoKing.png in Resources */ = {isa = PBXBuildFile; fileRef = AB1D53331F6A79A200DF248D /* dolagoKing.png */; };
+		AB1D53361F6A7D4600DF248D /* kaku.png in Resources */ = {isa = PBXBuildFile; fileRef = AB1D53351F6A7D4600DF248D /* kaku.png */; };
+		AB1D53381F6A7D5100DF248D /* r_kaku.png in Resources */ = {isa = PBXBuildFile; fileRef = AB1D53371F6A7D5100DF248D /* r_kaku.png */; };
 		AB2CFEC01F31BC5A00960165 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2CFEBF1F31BC5A00960165 /* AppDelegate.swift */; };
 		AB2CFEC21F31BC5A00960165 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2CFEC11F31BC5A00960165 /* ViewController.swift */; };
 		AB2CFEC51F31BC5A00960165 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB2CFEC31F31BC5A00960165 /* Main.storyboard */; };
@@ -76,6 +80,10 @@
 		AB1D532B1F5FAD9200DF248D /* r_gold.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = r_gold.png; sourceTree = "<group>"; };
 		AB1D532D1F68E9BC00DF248D /* wing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wing.png; sourceTree = "<group>"; };
 		AB1D532F1F68EA2B00DF248D /* r_wing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = r_wing.png; sourceTree = "<group>"; };
+		AB1D53311F6A6D8500DF248D /* r_dolagoKing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = r_dolagoKing.png; sourceTree = "<group>"; };
+		AB1D53331F6A79A200DF248D /* dolagoKing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dolagoKing.png; sourceTree = "<group>"; };
+		AB1D53351F6A7D4600DF248D /* kaku.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kaku.png; sourceTree = "<group>"; };
+		AB1D53371F6A7D5100DF248D /* r_kaku.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = r_kaku.png; sourceTree = "<group>"; };
 		AB2CFEBC1F31BC5A00960165 /* SyoGi_HERO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SyoGi_HERO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB2CFEBF1F31BC5A00960165 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB2CFEC11F31BC5A00960165 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -153,6 +161,10 @@
 				969D5A391F5EEA0300A46B08 /* r_hose.png */,
 				AB1D532D1F68E9BC00DF248D /* wing.png */,
 				969D5A311F5EE86200A46B08 /* r_kyo.png */,
+				AB1D53331F6A79A200DF248D /* dolagoKing.png */,
+				AB1D53371F6A7D5100DF248D /* r_kaku.png */,
+				AB1D53351F6A7D4600DF248D /* kaku.png */,
+				AB1D53311F6A6D8500DF248D /* r_dolagoKing.png */,
 				969D5A4D1F682B2C00A46B08 /* backBlue.png */,
 				969D5A4E1F682B2C00A46B08 /* backRed.png */,
 				969D5A331F5EE87300A46B08 /* r_to.png */,
@@ -233,20 +245,24 @@
 				AB1D532C1F5FAD9200DF248D /* r_gold.png in Resources */,
 				AB2CFECA1F31BC5A00960165 /* LaunchScreen.storyboard in Resources */,
 				969D5A541F683A4000A46B08 /* back.png in Resources */,
+				AB1D53321F6A6D8500DF248D /* r_dolagoKing.png in Resources */,
 				AB2CFED71F31C1AD00960165 /* cell.png in Resources */,
 				969D5A401F5EF03200A46B08 /* r_silva.png in Resources */,
 				AB1D53021F454DF300DF248D /* hose.png in Resources */,
 				AB1D52FC1F452B7700DF248D /* king.png in Resources */,
+				AB1D53341F6A79A200DF248D /* dolagoKing.png in Resources */,
 				969D5A361F5EE8D100A46B08 /* r_king.png in Resources */,
 				AB1D53061F4551A300DF248D /* kyo.png in Resources */,
 				AB1D53001F452B8700DF248D /* gold.png in Resources */,
 				AB1D52EE1F41782500DF248D /* mokume.jpg in Resources */,
 				AB2CFEC71F31BC5A00960165 /* Assets.xcassets in Resources */,
 				AB1D52FE1F452B7F00DF248D /* silva.png in Resources */,
+				AB1D53361F6A7D4600DF248D /* kaku.png in Resources */,
 				AB2CFEC51F31BC5A00960165 /* Main.storyboard in Resources */,
 				AB1D52F41F44066600DF248D /* koma.png in Resources */,
 				AB1D52FA1F452B3900DF248D /* hu.png in Resources */,
 				AB1D52F61F4409E100DF248D /* koma 2.png in Resources */,
+				AB1D53381F6A7D5100DF248D /* r_kaku.png in Resources */,
 				969D5A341F5EE87300A46B08 /* r_to.png in Resources */,
 				969D5A3C1F5EEA5400A46B08 /* tama.png in Resources */,
 				969D5A501F682B2C00A46B08 /* backRed.png in Resources */,

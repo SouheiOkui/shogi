@@ -22,10 +22,11 @@ class ButtleViewController: UIViewController {
     var play2Hold : [Int] = [0,0,0,0,0]
     var putNumber : [Int] = [0,0]
     
-    var komaImageIndex:[String] = ["hu.png","king.png","gold.png","silva.png","hose.png","kyo.png","to.png","tama.png","gold.png","gold.png","gold.png","wing.png"]
-    var r_komaImageIndex:[String] = ["r_hu.png","r_king.png","r_gold.png","r_silva.png","r_hose.png","r_kyo.png","r_to.png","r_tama.png","r_gold.png","r_gold.png","r_gold.png","r_wing.png"]
+    var komaImageIndex:[String] = ["hu.png","king.png","gold.png","silva.png","hose.png","kyo.png","to.png","tama.png","gold.png","gold.png","gold.png","wing.png","dolagoKing.png"]
+    var r_komaImageIndex:[String] = ["r_hu.png","r_king.png","r_gold.png","r_silva.png","r_hose.png","r_kyo.png","r_to.png","r_tama.png","r_gold.png","r_gold.png","r_gold.png","r_wing.png","r_dolagoKing.png"]
+    var komaKazu : Int = 13
     
-    var degenerationIndex :[Int] = [0,1,2,3,4,5,6,1,8,4,5,6,12]
+    var degenerationIndex :[Int] = [0,1,2,3,4,5,6,1,8,4,5,6,12,12]
     
     @IBOutlet var buttns1 : UIButton!
     @IBOutlet var buttns2 : UIButton!
@@ -253,7 +254,17 @@ class ButtleViewController: UIViewController {
         }
         if koma_No == -12 && chatchFlag{
             print("敵の飛車だよ")
-            //callWingR(cell_No:cell_No)
+            callWingR(cell_No:cell_No)
+            plotPossible2()
+        }
+        if koma_No == 13 && chatchFlag{
+            print("竜王だよ")
+            calldragonKing(cell_No:cell_No)
+            plotPossible()
+        }
+        if koma_No == -13 && chatchFlag{
+            print("敵の竜王だよ")
+            calldragonKingR(cell_No:cell_No)
             plotPossible2()
         }
         print(possibleMatrix)
@@ -303,9 +314,6 @@ class ButtleViewController: UIViewController {
             if  boardMatrix[(cell_No+3)/3][0] <= 0 {possibleMatrix [(cell_No+3)/3][0] = 1}
             if  boardMatrix[(cell_No+3)/3][1] <= 0 {possibleMatrix [(cell_No+3)/3][1] = 1}
             if  boardMatrix[(cell_No+3)/3][2] <= 0 {possibleMatrix [(cell_No+3)/3][2] = 1}
-            lastCallX = ((cell_No-1) / 3)
-            lastCallY = (cell_No-1) % 3
-            
         }
         else if  4 < cell_No && cell_No < 22 && cell_No % 3 == 0 {
             print("右サイド")
@@ -314,9 +322,6 @@ class ButtleViewController: UIViewController {
             if  boardMatrix[(cell_No-1)/3][1] <= 0 {possibleMatrix [(cell_No-1)/3][1] = 1}
             if  boardMatrix[(cell_No+2)/3][1] <= 0 {possibleMatrix [(cell_No+2)/3][1] = 1}
             if  boardMatrix[(cell_No+2)/3][2] <= 0 {possibleMatrix [(cell_No+2)/3][2] = 1}
-            lastCallX = ((cell_No-1) / 3)
-            lastCallY = (cell_No-1) % 3
-            
         }
         else if  3 < cell_No && cell_No < 22 && cell_No % 3 == 1 {
             print("左サイド")
@@ -325,9 +330,6 @@ class ButtleViewController: UIViewController {
             if  boardMatrix[(cell_No)/3][1] <= 0 {possibleMatrix [(cell_No)/3][1] = 1}
             if  boardMatrix[(cell_No+2)/3][0] <= 0 {possibleMatrix [(cell_No+2)/3][0] = 1}
             if  boardMatrix[(cell_No+2)/3][1] <= 0 {possibleMatrix [(cell_No+2)/3][1] = 1}
-            lastCallX = ((cell_No-1) / 3)
-            lastCallY = (cell_No-1) % 3
-            
         }
         else if cell_No == 2 {
             print("初期値")
@@ -336,8 +338,6 @@ class ButtleViewController: UIViewController {
             if  boardMatrix[1][0] <= 0 { possibleMatrix [1][0] = 1}
             if  boardMatrix[1][1] <= 0 { possibleMatrix [1][1] = 1}
             if  boardMatrix[1][2] <= 0 { possibleMatrix [1][2] = 1}
-            lastCallX = ((cell_No-1) / 3)
-            lastCallY = (cell_No-1) % 3
         }
         else if cell_No == 23 {
             if  boardMatrix[7][0] <= 0 { possibleMatrix [7][0] = 1}
@@ -345,37 +345,29 @@ class ButtleViewController: UIViewController {
             if  boardMatrix[6][0] <= 0 { possibleMatrix [6][0] = 1}
             if  boardMatrix[6][1] <= 0 { possibleMatrix [6][1] = 1}
             if  boardMatrix[6][2] <= 0 { possibleMatrix [6][2] = 1}
-            lastCallX = ((cell_No-1) / 3)
-            lastCallY = (cell_No-1) % 3
         }
         else if cell_No == 1 {//王のかど
             if  boardMatrix[0][1] <= 0 { possibleMatrix [0][1] = 1}
             if  boardMatrix[1][0] <= 0 { possibleMatrix [1][0] = 1}
             if  boardMatrix[1][1] <= 0 { possibleMatrix [1][1] = 1}
-            lastCallX = ((cell_No-1) / 3)
-            lastCallY = (cell_No-1) % 3
         }
         else if cell_No == 3 {//王のかど
             if  boardMatrix[0][1] <= 0 { possibleMatrix [0][1] = 1}
             if  boardMatrix[1][2] <= 0 { possibleMatrix [1][2] = 1}
             if  boardMatrix[1][1] <= 0 { possibleMatrix [1][1] = 1}
-            lastCallX = ((cell_No-1) / 3)
-            lastCallY = (cell_No-1) % 3
         }
         else if cell_No == 22 {//王のかど
             if  boardMatrix[6][1] <= 0 { possibleMatrix [6][1] = 1}
             if  boardMatrix[6][0] <= 0 { possibleMatrix [6][0] = 1}
             if  boardMatrix[7][1] <= 0 { possibleMatrix [7][1] = 1}
-            lastCallX = ((cell_No-1) / 3)
-            lastCallY = (cell_No-1) % 3
         }
         else if cell_No == 24 {//王のかど
             if  boardMatrix[6][1] <= 0 { possibleMatrix [6][1] = 1}
             if  boardMatrix[6][2] <= 0 { possibleMatrix [6][2] = 1}
             if  boardMatrix[7][1] <= 0 { possibleMatrix [7][1] = 1}
-            lastCallX = ((cell_No-1) / 3)
-            lastCallY = (cell_No-1) % 3
         }
+        lastCallX = ((cell_No-1) / 3)
+        lastCallY = (cell_No-1) % 3
         
     }
     func callKingR(cell_No : Int){
@@ -389,9 +381,6 @@ class ButtleViewController: UIViewController {
             if  boardMatrix[(cell_No+3)/3][0] >= 0 {possibleP2Matrix [(cell_No+3)/3][0] = 1}
             if  boardMatrix[(cell_No+3)/3][1] >= 0 {possibleP2Matrix [(cell_No+3)/3][1] = 1}
             if  boardMatrix[(cell_No+3)/3][2] >= 0 {possibleP2Matrix [(cell_No+3)/3][2] = 1}
-            lastCallX = ((cell_No-1) / 3)
-            lastCallY = (cell_No-1) % 3
-            
         }
         else if  4 < cell_No && cell_No < 22 && cell_No % 3 == 0 {
             print("右サイド")
@@ -400,9 +389,6 @@ class ButtleViewController: UIViewController {
             if  boardMatrix[(cell_No-1)/3][1] >= 0 {possibleP2Matrix [(cell_No-1)/3][1] = 1}
             if  boardMatrix[(cell_No+2)/3][1] >= 0 {possibleP2Matrix [(cell_No+2)/3][1] = 1}
             if  boardMatrix[(cell_No+2)/3][2] >= 0 {possibleP2Matrix [(cell_No+2)/3][2] = 1}
-            lastCallX = ((cell_No-1) / 3)
-            lastCallY = (cell_No-1) % 3
-            
         }
         else if  3 < cell_No && cell_No < 22 && cell_No % 3 == 1 {
             print("左サイド")
@@ -411,9 +397,6 @@ class ButtleViewController: UIViewController {
             if  boardMatrix[(cell_No)/3][1] >= 0 {possibleP2Matrix [(cell_No)/3][1] = 1}
             if  boardMatrix[(cell_No+2)/3][0] >= 0 {possibleP2Matrix [(cell_No+2)/3][0] = 1}
             if  boardMatrix[(cell_No+2)/3][1] >= 0 {possibleP2Matrix [(cell_No+2)/3][1] = 1}
-            lastCallX = ((cell_No-1) / 3)
-            lastCallY = (cell_No-1) % 3
-            
         }
         else if cell_No == 2 {
             print("初期値")
@@ -422,8 +405,6 @@ class ButtleViewController: UIViewController {
             if  boardMatrix[1][0] >= 0 { possibleP2Matrix [1][0] = 1}
             if  boardMatrix[1][1] >= 0 { possibleP2Matrix [1][1] = 1}
             if  boardMatrix[1][2] >= 0  { possibleP2Matrix [1][2] = 1}
-            lastCallX = ((cell_No-1) / 3)
-            lastCallY = (cell_No-1) % 3
         }
         else if cell_No == 23 {
             if  boardMatrix[7][0] >= 0 { possibleP2Matrix [7][0] = 1}
@@ -431,38 +412,30 @@ class ButtleViewController: UIViewController {
             if  boardMatrix[6][0] >= 0 { possibleP2Matrix [6][0] = 1}
             if  boardMatrix[6][1] >= 0 { possibleP2Matrix [6][1] = 1}
             if  boardMatrix[6][2] >= 0 { possibleP2Matrix [6][2] = 1}
-            lastCallX = ((cell_No-1) / 3)
-            lastCallY = (cell_No-1) % 3
         }
         else if cell_No == 1 {//王のかど
             if  boardMatrix[0][1] >= 0 { possibleP2Matrix [0][1] = 1}
             if  boardMatrix[1][0] >= 0 { possibleP2Matrix [1][0] = 1}
             if  boardMatrix[1][1] >= 0 { possibleP2Matrix [1][1] = 1}
-            lastCallX = ((cell_No-1) / 3)
-            lastCallY = (cell_No-1) % 3
+            
         }
         else if cell_No == 3 {//王のかど
             if  boardMatrix[0][1] >= 0 { possibleP2Matrix [0][1] = 1}
             if  boardMatrix[1][2] >= 0 { possibleP2Matrix [1][2] = 1}
             if  boardMatrix[1][1] >= 0 { possibleP2Matrix [1][1] = 1}
-            lastCallX = ((cell_No-1) / 3)
-            lastCallY = (cell_No-1) % 3
         }
         else if cell_No == 22 {//王のかど
             if  boardMatrix[6][1] >= 0 { possibleP2Matrix [6][1] = 1}
             if  boardMatrix[6][0] >= 0 { possibleP2Matrix [6][0] = 1}
             if  boardMatrix[7][1] >= 0 { possibleP2Matrix [7][1] = 1}
-            lastCallX = ((cell_No-1) / 3)
-            lastCallY = (cell_No-1) % 3
         }
         else if cell_No == 24 {//王のかど
             if  boardMatrix[6][1] >= 0 { possibleP2Matrix [6][1] = 1}
             if  boardMatrix[6][2] >= 0 { possibleP2Matrix [6][2] = 1}
             if  boardMatrix[7][1] >= 0 { possibleP2Matrix [7][1] = 1}
-            lastCallX = ((cell_No-1) / 3)
-            lastCallY = (cell_No-1) % 3
         }
-        
+        lastCallX = ((cell_No-1) / 3)
+        lastCallY = (cell_No-1) % 3
     }
     func callGold(cell_No : Int){
         if  4 < cell_No && cell_No < 22 && cell_No % 3 == 2 {
@@ -473,9 +446,6 @@ class ButtleViewController: UIViewController {
             if  boardMatrix[(cell_No+3)/3][0] <= 0 {possibleMatrix [(cell_No+3)/3][0] = 1}
             if  boardMatrix[(cell_No+3)/3][1] <= 0 {possibleMatrix [(cell_No+3)/3][1] = 1}
             if  boardMatrix[(cell_No+3)/3][2] <= 0 {possibleMatrix [(cell_No+3)/3][2] = 1}
-            lastCallX = ((cell_No-1) / 3)
-            lastCallY = (cell_No-1) % 3
-            
         }
         else if  4 < cell_No && cell_No < 22 && cell_No % 3 == 0 {
             print("右サイド")
@@ -483,9 +453,6 @@ class ButtleViewController: UIViewController {
             if  boardMatrix[(cell_No-1)/3][1] <= 0 {possibleMatrix [(cell_No-1)/3][1] = 1}
             if  boardMatrix[(cell_No+2)/3][1] <= 0 {possibleMatrix [(cell_No+2)/3][1] = 1}
             if  boardMatrix[(cell_No+2)/3][2] <= 0 {possibleMatrix [(cell_No+2)/3][2] = 1}
-            lastCallX = ((cell_No-1) / 3)
-            lastCallY = (cell_No-1) % 3
-            
         }
         else if  3 < cell_No && cell_No < 22 && cell_No % 3 == 1 {
             print("左サイド")
@@ -493,9 +460,6 @@ class ButtleViewController: UIViewController {
             if  boardMatrix[(cell_No)/3][1] <= 0 {possibleMatrix [(cell_No)/3][1] = 1}
             if  boardMatrix[(cell_No+2)/3][0] <= 0 {possibleMatrix [(cell_No+2)/3][0] = 1}
             if  boardMatrix[(cell_No+2)/3][1] <= 0 {possibleMatrix [(cell_No+2)/3][1] = 1}
-            lastCallX = ((cell_No-1) / 3)
-            lastCallY = (cell_No-1) % 3
-            
         }
         else if cell_No == 2 {
             print("初期値")
@@ -504,42 +468,32 @@ class ButtleViewController: UIViewController {
             if  boardMatrix[1][0] <= 0 { possibleMatrix [1][0] = 1}
             if  boardMatrix[1][1] <= 0 { possibleMatrix [1][1] = 1}
             if  boardMatrix[1][2] <= 0 { possibleMatrix [1][2] = 1}
-            lastCallX = ((cell_No-1) / 3)
-            lastCallY = (cell_No-1) % 3
         }
         else if cell_No == 23 {
             if  boardMatrix[7][0] <= 0 { possibleMatrix [7][0] = 1}
             if  boardMatrix[7][2] <= 0 { possibleMatrix [7][2] = 1}
             if  boardMatrix[6][1] <= 0 { possibleMatrix [6][1] = 1}
-            lastCallX = ((cell_No-1) / 3)
-            lastCallY = (cell_No-1) % 3
         }
         else if cell_No == 1 {//金のかど
             if  boardMatrix[0][1] <= 0 { possibleMatrix [0][1] = 1}
             if  boardMatrix[1][0] <= 0 { possibleMatrix [1][0] = 1}
             if  boardMatrix[1][1] <= 0 { possibleMatrix [1][1] = 1}
-            lastCallX = ((cell_No-1) / 3)
-            lastCallY = (cell_No-1) % 3
         }
         else if cell_No == 3 {//金のかど
             if  boardMatrix[0][1] <= 0 { possibleMatrix [0][1] = 1}
             if  boardMatrix[1][2] <= 0 { possibleMatrix [1][2] = 1}
             if  boardMatrix[1][1] <= 0 { possibleMatrix [1][1] = 1}
-            lastCallX = ((cell_No-1) / 3)
-            lastCallY = (cell_No-1) % 3
         }
         else if cell_No == 22 {//金のかど
             if  boardMatrix[6][0] <= 0 { possibleMatrix [6][0] = 1}
             if  boardMatrix[7][1] <= 0 { possibleMatrix [7][1] = 1}
-            lastCallX = ((cell_No-1) / 3)
-            lastCallY = (cell_No-1) % 3
         }
         else if cell_No == 24 {//金のかど
             if  boardMatrix[6][2] <= 0 { possibleMatrix [6][2] = 1}
             if  boardMatrix[7][1] <= 0 { possibleMatrix [7][1] = 1}
-            lastCallX = ((cell_No-1) / 3)
-            lastCallY = (cell_No-1) % 3
         }
+        lastCallX = ((cell_No-1) / 3)
+        lastCallY = (cell_No-1) % 3
     }
     func callGoldR(cell_No : Int){
         if  4 < cell_No && cell_No < 22 && cell_No % 3 == 2 {
@@ -550,9 +504,6 @@ class ButtleViewController: UIViewController {
             if  boardMatrix[(cell_No)/3][0] >= 0 {possibleP2Matrix [(cell_No)/3][0] = 1}
             if  boardMatrix[(cell_No)/3][2] >= 0 {possibleP2Matrix [(cell_No)/3][2] = 1}
             if  boardMatrix[(cell_No+3)/3][1] >= 0 {possibleP2Matrix [(cell_No+3)/3][1] = 1}
-            lastCallX = ((cell_No-1) / 3)
-            lastCallY = (cell_No-1) % 3
-            
         }
         else if  4 < cell_No && cell_No < 22 && cell_No % 3 == 0 {
             print("右サイド")
@@ -560,9 +511,6 @@ class ButtleViewController: UIViewController {
             if  boardMatrix[(cell_No-4)/3][2] >= 0 {possibleP2Matrix [(cell_No-4)/3][2] = 1}
             if  boardMatrix[(cell_No-1)/3][1] >= 0 {possibleP2Matrix [(cell_No-1)/3][1] = 1}
             if  boardMatrix[(cell_No+2)/3][2] >= 0 {possibleP2Matrix [(cell_No+2)/3][2] = 1}
-            lastCallX = ((cell_No-1) / 3)
-            lastCallY = (cell_No-1) % 3
-            
         }
         else if  3 < cell_No && cell_No < 22 && cell_No % 3 == 1 {
             print("左サイド")
@@ -570,17 +518,12 @@ class ButtleViewController: UIViewController {
             if  boardMatrix[(cell_No-2)/3][1] >= 0 {possibleP2Matrix [(cell_No-2)/3][1] = 1}
             if  boardMatrix[(cell_No)/3][1] >= 0 {possibleP2Matrix [(cell_No)/3][1] = 1}
             if  boardMatrix[(cell_No+2)/3][0] >= 0 {possibleP2Matrix [(cell_No+2)/3][0] = 1}
-            lastCallX = ((cell_No-1) / 3)
-            lastCallY = (cell_No-1) % 3
-            
         }
         else if cell_No == 2 {
             print("初期値")
             if  boardMatrix[0][0] >= 0 { possibleP2Matrix [0][0] = 1}
             if  boardMatrix[0][2] >= 0 { possibleP2Matrix [0][2] = 1}
             if  boardMatrix[1][1] >= 0 { possibleP2Matrix [1][1] = 1}
-            lastCallX = ((cell_No-1) / 3)
-            lastCallY = (cell_No-1) % 3
         }
         else if cell_No == 23 {
             if  boardMatrix[7][0] >= 0 { possibleP2Matrix [7][0] = 1}
@@ -588,36 +531,27 @@ class ButtleViewController: UIViewController {
             if  boardMatrix[6][0] >= 0 { possibleP2Matrix [6][0] = 1}
             if  boardMatrix[6][1] >= 0 { possibleP2Matrix [6][1] = 1}
             if  boardMatrix[6][2] >= 0 { possibleP2Matrix [6][2] = 1}
-            lastCallX = ((cell_No-1) / 3)
-            lastCallY = (cell_No-1) % 3
         }
         else if cell_No == 1 {//王のかど
             if  boardMatrix[0][1] >= 0 { possibleP2Matrix [0][1] = 1}
             if  boardMatrix[1][0] >= 0 { possibleP2Matrix [1][0] = 1}
-            lastCallX = ((cell_No-1) / 3)
-            lastCallY = (cell_No-1) % 3
         }
         else if cell_No == 3 {//王のかど
             if  boardMatrix[0][1] >= 0 { possibleP2Matrix [0][1] = 1}
             if  boardMatrix[1][2] >= 0 { possibleP2Matrix [1][2] = 1}
-            lastCallX = ((cell_No-1) / 3)
-            lastCallY = (cell_No-1) % 3
         }
         else if cell_No == 22 {//王のかど
             if  boardMatrix[6][1] >= 0 { possibleP2Matrix [6][1] = 1}
             if  boardMatrix[6][0] >= 0 { possibleP2Matrix [6][0] = 1}
             if  boardMatrix[7][1] >= 0 { possibleP2Matrix [7][1] = 1}
-            lastCallX = ((cell_No-1) / 3)
-            lastCallY = (cell_No-1) % 3
         }
         else if cell_No == 24 {//王のかど
             if  boardMatrix[6][1] >= 0 { possibleP2Matrix [6][1] = 1}
             if  boardMatrix[6][2] >= 0 { possibleP2Matrix [6][2] = 1}
             if  boardMatrix[7][1] >= 0 { possibleP2Matrix [7][1] = 1}
-            lastCallX = ((cell_No-1) / 3)
-            lastCallY = (cell_No-1) % 3
         }
-        
+        lastCallX = ((cell_No-1) / 3)
+        lastCallY = (cell_No-1) % 3
     }
     func callSilva(cell_No : Int){
         if  4 < cell_No && cell_No < 22 && cell_No % 3 == 2 {
@@ -627,65 +561,45 @@ class ButtleViewController: UIViewController {
             if  boardMatrix[(cell_No-3)/3][2] <= 0 {possibleMatrix [(cell_No-3)/3][2] = 1}
             if  boardMatrix[(cell_No+3)/3][0] <= 0 {possibleMatrix [(cell_No+3)/3][0] = 1}
             if  boardMatrix[(cell_No+3)/3][2] <= 0 {possibleMatrix [(cell_No+3)/3][2] = 1}
-            lastCallX = ((cell_No-1) / 3)
-            lastCallY = (cell_No-1) % 3
-            
         }
         else if  4 < cell_No && cell_No < 22 && cell_No % 3 == 0 {
             print("右サイド")
             if  boardMatrix[(cell_No-4)/3][1] <= 0 {possibleMatrix [(cell_No-4)/3][1] = 1}
             if  boardMatrix[(cell_No+2)/3][2] <= 0 {possibleMatrix [(cell_No+2)/3][2] = 1}
             if  boardMatrix[(cell_No+2)/3][1] <= 0 {possibleMatrix [(cell_No+2)/3][1] = 1}
-            lastCallX = ((cell_No-1) / 3)
-            lastCallY = (cell_No-1) % 3
-            
         }
         else if  3 < cell_No && cell_No < 22 && cell_No % 3 == 1 {
             print("左サイド")
             if  boardMatrix[(cell_No+2)/3][0] <= 0 {possibleMatrix [(cell_No+2)/3][0] = 1}
             if  boardMatrix[(cell_No-2)/3][1] <= 0 {possibleMatrix [(cell_No-2)/3][1] = 1}
             if  boardMatrix[(cell_No+2)/3][1] <= 0 {possibleMatrix [(cell_No+2)/3][1] = 1}
-            lastCallX = ((cell_No-1) / 3)
-            lastCallY = (cell_No-1) % 3
-            
         }
         else if cell_No == 2 {
             print("初期値")
             if  boardMatrix[1][0] <= 0 { possibleMatrix [1][0] = 1}
             if  boardMatrix[1][1] <= 0 { possibleMatrix [1][1] = 1}
             if  boardMatrix[1][2] <= 0 { possibleMatrix [1][2] = 1}
-            lastCallX = ((cell_No-1) / 3)
-            lastCallY = (cell_No-1) % 3
         }
         else if cell_No == 23 {
             if  boardMatrix[6][0] <= 0 { possibleMatrix [6][0] = 1}
             if  boardMatrix[6][2] <= 0 { possibleMatrix [6][2] = 1}
-            lastCallX = ((cell_No-1) / 3)
-            lastCallY = (cell_No-1) % 3
         }
         else if cell_No == 1 {//銀のかど
             if  boardMatrix[1][0] <= 0 { possibleMatrix [1][0] = 1}
             if  boardMatrix[1][1] <= 0 { possibleMatrix [1][1] = 1}
-            lastCallX = ((cell_No-1) / 3)
-            lastCallY = (cell_No-1) % 3
         }
         else if cell_No == 3 {//銀のかど
             if  boardMatrix[1][2] <= 0 { possibleMatrix [1][2] = 1}
             if  boardMatrix[1][1] <= 0 { possibleMatrix [1][1] = 1}
-            lastCallX = ((cell_No-1) / 3)
-            lastCallY = (cell_No-1) % 3
         }
         else if cell_No == 22 {//銀のかど
             if  boardMatrix[6][1] <= 0 { possibleMatrix [6][1] = 1}
-            lastCallX = ((cell_No-1) / 3)
-            lastCallY = (cell_No-1) % 3
         }
         else if cell_No == 24 {//銀のかど
             if  boardMatrix[6][1] <= 0 { possibleMatrix [6][1] = 1}
-            lastCallX = ((cell_No-1) / 3)
-            lastCallY = (cell_No-1) % 3
         }
-        
+        lastCallX = ((cell_No-1) / 3)
+        lastCallY = (cell_No-1) % 3
     }
     func callSilvaR(cell_No : Int){
         if  4 < cell_No && cell_No < 22 && cell_No % 3 == 2 {
@@ -1008,6 +922,332 @@ class ButtleViewController: UIViewController {
             
         }
     }
+    func callWingR(cell_No : Int){
+        if  0 < cell_No && cell_No < 24 && cell_No % 3 == 2 {
+            print("中央")
+            for x in (cell_No+3)/3 ... 7{
+                if boardMatrix[x][1] < 0{
+                    break
+                }
+                else if boardMatrix[x][1] > 0{
+                    possibleP2Matrix [x][1] = 1
+                    break
+                }
+                else {possibleP2Matrix [x][1] = 1}
+            }
+            for x in (0 ... (cell_No-3)/3).reversed(){
+                print("aaaa"+String(x))
+                if boardMatrix[x][1] < 0{
+                    break
+                }
+                else if boardMatrix[x][1] > 0{
+                    possibleP2Matrix [x][1] = 1
+                    break
+                }
+                else {
+                    possibleP2Matrix [x][1] = 1
+                }
+            }
+            if  boardMatrix[(cell_No)/3][0] >= 0 {possibleP2Matrix [(cell_No)/3][0] = 1}
+            if  boardMatrix[(cell_No)/3][2] >= 0 {possibleP2Matrix [(cell_No)/3][2] = 1}
+            lastCallX = ((cell_No-1) / 3)
+            lastCallY = (cell_No-1) % 3
+        }
+        else if  0 < cell_No && cell_No < 25 && cell_No % 3 == 0 {
+            print("右サイド")
+            for x in (cell_No+2)/3 ... 7{
+                if boardMatrix[x][2] < 0{
+                    break
+                }
+                else if boardMatrix[x][2] > 0{
+                    possibleP2Matrix [x][2] = 1
+                    break
+                }
+                else {possibleP2Matrix [x][2] = 1}
+            }
+            for x in (0 ... (cell_No-4)/3).reversed() {
+                if boardMatrix[x][2] < 0{
+                    break
+                }
+                else if boardMatrix[x][2] > 0{
+                    possibleP2Matrix [x][2] = 1
+                    break
+                }
+                else {possibleP2Matrix [x][2] = 1}
+            }
+            if  boardMatrix[(cell_No-3)/3][1] >= 0 {
+                possibleP2Matrix [(cell_No-3)/3][1] = 1
+                if  boardMatrix[(cell_No-3)/3][0] >= 0 && boardMatrix[(cell_No-3)/3][1] <= 0{
+                    possibleP2Matrix [(cell_No-3)/3][0] = 1
+                }
+            }
+            
+            lastCallX = ((cell_No-1) / 3)
+            lastCallY = (cell_No-1) % 3
+            
+        }
+        else if  0 <= cell_No && cell_No < 24 && cell_No % 3 == 1 {
+            print("左サイド")
+            for x in (cell_No+3)/3 ... 7{
+                if boardMatrix[x][0] < 0{
+                    break
+                }
+                else if boardMatrix[x][0] > 0{
+                    possibleP2Matrix [x][0] = 1
+                    break
+                }
+                else {possibleP2Matrix [x][0] = 1}
+            }
+            for x in (0 ... (cell_No-3)/3).reversed(){
+                if boardMatrix[x][0] < 0{
+                    break
+                }
+                else if boardMatrix[x][0] > 0{
+                    possibleP2Matrix [x][0] = 1
+                    break
+                }
+                else {possibleP2Matrix [x][0] = 1}
+            }
+            if  boardMatrix[(cell_No)/3][1] >= 0 {
+                possibleP2Matrix [(cell_No)/3][1] = 1
+                if  boardMatrix[(cell_No)/3][2] >= 0 && boardMatrix[(cell_No)/3][1] <= 0{
+                    possibleP2Matrix [(cell_No)/3][2] = 1
+                }
+            }
+            
+            lastCallX = ((cell_No-1) / 3)
+            lastCallY = (cell_No-1) % 3
+            
+        }
+    }
+    
+    func calldragonKing(cell_No : Int){
+        if  0 < cell_No && cell_No < 24 && cell_No % 3 == 2 {
+            print("中央")
+            for x in (cell_No+3)/3 ... 7{
+                if boardMatrix[x][1] > 0{
+                    break
+                }
+                else if boardMatrix[x][1] < 0{
+                    possibleMatrix [x][1] = 1
+                    break
+                }
+                else {possibleMatrix [x][1] = 1}
+            }
+            for x in (0 ... (cell_No-3)/3).reversed(){
+                print("aaaa"+String(x))
+                if boardMatrix[x][1] > 0{
+                    break
+                }
+                else if boardMatrix[x][1] < 0{
+                    possibleMatrix [x][1] = 1
+                    break
+                }
+                else {
+                    possibleMatrix [x][1] = 1
+                }
+            }
+            if  boardMatrix[(cell_No)/3][0] <= 0 {possibleMatrix [(cell_No)/3][0] = 1}
+            if  boardMatrix[(cell_No)/3][2] <= 0 {possibleMatrix [(cell_No)/3][2] = 1}
+        }
+        else if  0 < cell_No && cell_No < 25 && cell_No % 3 == 0 {
+            print("右サイド")
+            for x in (cell_No+2)/3 ... 7{
+                if boardMatrix[x][2] > 0{
+                    break
+                }
+                else if boardMatrix[x][2] < 0{
+                    possibleMatrix [x][2] = 1
+                    break
+                }
+                else {possibleMatrix [x][2] = 1}
+            }
+            for x in (0 ... (cell_No-4)/3).reversed() {
+                if boardMatrix[x][2] > 0{
+                    break
+                }
+                else if boardMatrix[x][2] < 0{
+                    possibleMatrix [x][2] = 1
+                    break
+                }
+                else {possibleMatrix [x][2] = 1}
+            }
+            if  boardMatrix[(cell_No-3)/3][1] <= 0 {
+                possibleMatrix [(cell_No-3)/3][1] = 1
+                if  boardMatrix[(cell_No-3)/3][0] <= 0 && boardMatrix[(cell_No-3)/3][1] >= 0{
+                    possibleMatrix [(cell_No-3)/3][0] = 1
+                }
+            }
+            
+        }
+        else if  0 <= cell_No && cell_No < 24 && cell_No % 3 == 1 {
+            print("左サイド")
+            for x in (cell_No+3)/3 ... 7{
+                if boardMatrix[x][0] > 0{
+                    break
+                }
+                else if boardMatrix[x][0] < 0{
+                    possibleMatrix [x][0] = 1
+                    break
+                }
+                else {possibleMatrix [x][0] = 1}
+            }
+            for x in (0 ... (cell_No-3)/3).reversed(){
+                if boardMatrix[x][0] > 0{
+                    break
+                }
+                else if boardMatrix[x][0] < 0{
+                    possibleMatrix [x][0] = 1
+                    break
+                }
+                else {possibleMatrix [x][0] = 1}
+            }
+            if  boardMatrix[(cell_No)/3][1] <= 0 {
+                possibleMatrix [(cell_No)/3][1] = 1
+                if  boardMatrix[(cell_No)/3][2] <= 0 && boardMatrix[(cell_No)/3][1] >= 0{
+                    possibleMatrix [(cell_No)/3][2] = 1
+                }
+            }
+        }
+        if  4 < cell_No && cell_No < 22 && cell_No % 3 == 2 {
+            print("中央")
+            if  boardMatrix[(cell_No-3)/3][0] <= 0 {possibleMatrix [(cell_No-3)/3][0] = 1}
+            if  boardMatrix[(cell_No-3)/3][2] <= 0 {possibleMatrix [(cell_No-3)/3][2] = 1}
+            if  boardMatrix[(cell_No+3)/3][0] <= 0 {possibleMatrix [(cell_No+3)/3][0] = 1}
+            if  boardMatrix[(cell_No+3)/3][2] <= 0 {possibleMatrix [(cell_No+3)/3][2] = 1}
+        }
+        else if  4 < cell_No && cell_No < 22 && cell_No % 3 == 0 {
+            print("右サイド")
+            if  boardMatrix[(cell_No-4)/3][1] <= 0 {possibleMatrix [(cell_No-4)/3][1] = 1}
+            if  boardMatrix[(cell_No+2)/3][1] <= 0 {possibleMatrix [(cell_No+2)/3][1] = 1}
+        }
+        else if  3 < cell_No && cell_No < 22 && cell_No % 3 == 1 {
+            print("左サイド")
+            if  boardMatrix[(cell_No-2)/3][1] <= 0 {possibleMatrix [(cell_No-2)/3][1] = 1}
+            if  boardMatrix[(cell_No+2)/3][1] <= 0 {possibleMatrix [(cell_No+2)/3][1] = 1}
+        }
+        else if cell_No == 2 {
+            print("初期値")
+            if  boardMatrix[1][0] <= 0 { possibleMatrix [1][0] = 1}
+            if  boardMatrix[1][2] <= 0 { possibleMatrix [1][2] = 1}
+        }
+        else if cell_No == 23 {
+            if  boardMatrix[6][0] <= 0 { possibleMatrix [6][0] = 1}
+            if  boardMatrix[6][2] <= 0 { possibleMatrix [6][2] = 1}
+        }
+        else if cell_No == 1 {//王のかど
+            if  boardMatrix[1][1] <= 0 { possibleMatrix [1][1] = 1}
+        }
+        else if cell_No == 3 {//王のかど
+            if  boardMatrix[1][1] <= 0 { possibleMatrix [1][1] = 1}
+        }
+        else if cell_No == 22 {//王のかど
+            if  boardMatrix[6][1] <= 0 { possibleMatrix [6][1] = 1}
+            else if cell_No == 24 {//王のかど
+                if  boardMatrix[6][1] <= 0 { possibleMatrix [6][1] = 1}
+            }
+        }
+        lastCallX = ((cell_No-1) / 3)
+        lastCallY = (cell_No-1) % 3
+    }
+    func calldragonKingR(cell_No : Int){
+        if  0 < cell_No && cell_No < 24 && cell_No % 3 == 2 {
+            print("中央")
+            for x in (cell_No+3)/3 ... 7{
+                if boardMatrix[x][1] < 0{
+                    break
+                }
+                else if boardMatrix[x][1] > 0{
+                    possibleP2Matrix [x][1] = 1
+                    break
+                }
+                else {possibleP2Matrix [x][1] = 1}
+            }
+            for x in (0 ... (cell_No-3)/3).reversed(){
+                print("aaaa"+String(x))
+                if boardMatrix[x][1] < 0{
+                    break
+                }
+                else if boardMatrix[x][1] > 0{
+                    possibleP2Matrix [x][1] = 1
+                    break
+                }
+                else {
+                    possibleP2Matrix [x][1] = 1
+                }
+            }
+            if  boardMatrix[(cell_No)/3][0] >= 0 {possibleP2Matrix [(cell_No)/3][0] = 1}
+            if  boardMatrix[(cell_No)/3][2] >= 0 {possibleP2Matrix [(cell_No)/3][2] = 1}
+            lastCallX = ((cell_No-1) / 3)
+            lastCallY = (cell_No-1) % 3
+        }
+        else if  0 < cell_No && cell_No < 25 && cell_No % 3 == 0 {
+            print("右サイド")
+            for x in (cell_No+2)/3 ... 7{
+                if boardMatrix[x][2] < 0{
+                    break
+                }
+                else if boardMatrix[x][2] > 0{
+                    possibleP2Matrix [x][2] = 1
+                    break
+                }
+                else {possibleP2Matrix [x][2] = 1}
+            }
+            for x in (0 ... (cell_No-4)/3).reversed() {
+                if boardMatrix[x][2] < 0{
+                    break
+                }
+                else if boardMatrix[x][2] > 0{
+                    possibleP2Matrix [x][2] = 1
+                    break
+                }
+                else {possibleP2Matrix [x][2] = 1}
+            }
+            if  boardMatrix[(cell_No-3)/3][1] >= 0 {
+                possibleP2Matrix [(cell_No-3)/3][1] = 1
+                if  boardMatrix[(cell_No-3)/3][0] >= 0 && boardMatrix[(cell_No-3)/3][1] <= 0{
+                    possibleP2Matrix [(cell_No-3)/3][0] = 1
+                }
+            }
+            
+            lastCallX = ((cell_No-1) / 3)
+            lastCallY = (cell_No-1) % 3
+            
+        }
+        else if  0 <= cell_No && cell_No < 24 && cell_No % 3 == 1 {
+            print("左サイド")
+            for x in (cell_No+3)/3 ... 7{
+                if boardMatrix[x][0] < 0{
+                    break
+                }
+                else if boardMatrix[x][0] > 0{
+                    possibleP2Matrix [x][0] = 1
+                    break
+                }
+                else {possibleP2Matrix [x][0] = 1}
+            }
+            for x in (0 ... (cell_No-3)/3).reversed(){
+                if boardMatrix[x][0] < 0{
+                    break
+                }
+                else if boardMatrix[x][0] > 0{
+                    possibleP2Matrix [x][0] = 1
+                    break
+                }
+                else {possibleP2Matrix [x][0] = 1}
+            }
+            if  boardMatrix[(cell_No)/3][1] >= 0 {
+                possibleP2Matrix [(cell_No)/3][1] = 1
+                if  boardMatrix[(cell_No)/3][2] >= 0 && boardMatrix[(cell_No)/3][1] <= 0{
+                    possibleP2Matrix [(cell_No)/3][2] = 1
+                }
+            }
+            
+            lastCallX = ((cell_No-1) / 3)
+            lastCallY = (cell_No-1) % 3
+            
+        }
+    }
 
     
     func handAdd(handNumber : Int){
@@ -1097,6 +1337,7 @@ class ButtleViewController: UIViewController {
             for y in 0...2{
                 if boardMatrix[x][y] == 1 {boardMatrix[x][y] = 7}
                 if 4 <= boardMatrix[x][y] && boardMatrix[x][y] <= 6 {boardMatrix[x][y] = boardMatrix[x][y] + 5}
+                if boardMatrix[x][y] == 12 {boardMatrix[x][y] = 13}
             }
         }
     }
@@ -1107,12 +1348,13 @@ class ButtleViewController: UIViewController {
                 if -6 <= boardMatrix[x][y] && boardMatrix[x][y] <= -4 {
                     boardMatrix[x][y] = boardMatrix[x][y] - 5
                 }
+                if boardMatrix[x][y] == -12 {boardMatrix[x][y] = -13}
             }
         }
     }
     
     func plotKoma(){//駒の画像をプロット
-        for x in 0...11{//駒が追加されたらこのfar文も長くする
+        for x in 0...komaKazu{//駒が追加されたらこのfar文も長くする
             if boardMatrix[0][0] >= 1 && boardMatrix[0][0] == x+1 {
                 komaImg1.image = UIImage(named : komaImageIndex[x])
             }
@@ -1218,7 +1460,7 @@ class ButtleViewController: UIViewController {
             else if boardMatrix[7][2] == 0 {komaImg24.image = UIImage(named : "koma2.png")}
             //----
         }
-        for x in -11 ... -1{//駒が追加されたらこのfar文も長くする
+        for x in -1 * komaKazu ... -1{//駒が追加されたらこのfar文も長くする
             if boardMatrix[0][0] == x {
                 komaImg1.image = UIImage(named : r_komaImageIndex[(x * -1) - 1])
             }
@@ -1326,7 +1568,7 @@ class ButtleViewController: UIViewController {
         }
     }
     func plotHandKoma(){//駒の画像をプロット
-        for x in 1...11{//駒が追加されたらこのfar文も長くする
+        for x in 1...komaKazu{//駒が追加されたらこのfar文も長くする
             if play1Hold[0] == x {
                 handKomaImg1.image = UIImage(named : komaImageIndex[x-1])
             }
@@ -1349,7 +1591,7 @@ class ButtleViewController: UIViewController {
         
     }
     func plotHandKoma2(){//駒の画像をプロット
-        for x in 1...11{//駒が追加されたらこのfar文も長くする
+        for x in 1...komaKazu{//駒が追加されたらこのfar文も長くする
             if play2Hold[0] == x {
                 handKomaImg5.image = UIImage(named : r_komaImageIndex[x-1])
             }
