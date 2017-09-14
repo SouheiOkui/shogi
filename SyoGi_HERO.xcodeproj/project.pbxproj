@@ -41,6 +41,8 @@
 		AB1D53341F6A79A200DF248D /* dolagoKing.png in Resources */ = {isa = PBXBuildFile; fileRef = AB1D53331F6A79A200DF248D /* dolagoKing.png */; };
 		AB1D53361F6A7D4600DF248D /* kaku.png in Resources */ = {isa = PBXBuildFile; fileRef = AB1D53351F6A7D4600DF248D /* kaku.png */; };
 		AB1D53381F6A7D5100DF248D /* r_kaku.png in Resources */ = {isa = PBXBuildFile; fileRef = AB1D53371F6A7D5100DF248D /* r_kaku.png */; };
+		AB1D533A1F6A963A00DF248D /* r_dolagoHose.png in Resources */ = {isa = PBXBuildFile; fileRef = AB1D53391F6A963A00DF248D /* r_dolagoHose.png */; };
+		AB1D533C1F6A964200DF248D /* dolagoHose.png in Resources */ = {isa = PBXBuildFile; fileRef = AB1D533B1F6A964200DF248D /* dolagoHose.png */; };
 		AB2CFEC01F31BC5A00960165 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2CFEBF1F31BC5A00960165 /* AppDelegate.swift */; };
 		AB2CFEC21F31BC5A00960165 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2CFEC11F31BC5A00960165 /* ViewController.swift */; };
 		AB2CFEC51F31BC5A00960165 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB2CFEC31F31BC5A00960165 /* Main.storyboard */; };
@@ -84,6 +86,8 @@
 		AB1D53331F6A79A200DF248D /* dolagoKing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dolagoKing.png; sourceTree = "<group>"; };
 		AB1D53351F6A7D4600DF248D /* kaku.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kaku.png; sourceTree = "<group>"; };
 		AB1D53371F6A7D5100DF248D /* r_kaku.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = r_kaku.png; sourceTree = "<group>"; };
+		AB1D53391F6A963A00DF248D /* r_dolagoHose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = r_dolagoHose.png; sourceTree = "<group>"; };
+		AB1D533B1F6A964200DF248D /* dolagoHose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dolagoHose.png; sourceTree = "<group>"; };
 		AB2CFEBC1F31BC5A00960165 /* SyoGi_HERO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SyoGi_HERO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB2CFEBF1F31BC5A00960165 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB2CFEC11F31BC5A00960165 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -156,6 +160,8 @@
 				969D5A3B1F5EEA5400A46B08 /* tama.png */,
 				969D5A3D1F5EECA000A46B08 /* r_tama.png */,
 				969D5A351F5EE8D100A46B08 /* r_king.png */,
+				AB1D53391F6A963A00DF248D /* r_dolagoHose.png */,
+				AB1D533B1F6A964200DF248D /* dolagoHose.png */,
 				969D5A3F1F5EF03200A46B08 /* r_silva.png */,
 				969D5A531F683A4000A46B08 /* back.png */,
 				969D5A391F5EEA0300A46B08 /* r_hose.png */,
@@ -255,6 +261,7 @@
 				AB1D53061F4551A300DF248D /* kyo.png in Resources */,
 				AB1D53001F452B8700DF248D /* gold.png in Resources */,
 				AB1D52EE1F41782500DF248D /* mokume.jpg in Resources */,
+				AB1D533A1F6A963A00DF248D /* r_dolagoHose.png in Resources */,
 				AB2CFEC71F31BC5A00960165 /* Assets.xcassets in Resources */,
 				AB1D52FE1F452B7F00DF248D /* silva.png in Resources */,
 				AB1D53361F6A7D4600DF248D /* kaku.png in Resources */,
@@ -265,6 +272,7 @@
 				AB1D53381F6A7D5100DF248D /* r_kaku.png in Resources */,
 				969D5A341F5EE87300A46B08 /* r_to.png in Resources */,
 				969D5A3C1F5EEA5400A46B08 /* tama.png in Resources */,
+				AB1D533C1F6A964200DF248D /* dolagoHose.png in Resources */,
 				969D5A501F682B2C00A46B08 /* backRed.png in Resources */,
 				969D5A381F5EE8E200A46B08 /* r_hu.png in Resources */,
 				969D5A3E1F5EECA000A46B08 /* r_tama.png in Resources */,
